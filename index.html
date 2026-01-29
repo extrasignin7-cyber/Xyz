@@ -3,270 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luxe & Co. | Fashion & Beauty</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>LUXE | Advanced Fashion Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-gold: #c5a059;
-            --deep-black: #1a1a1a;
-            --soft-white: #f9f9f9;
-            --accent-pink: #f4d0cf;
+            --gold: #d4af37;
+            --glass: rgba(255, 255, 255, 0.8);
+            --dark: #0f0f0f;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; scroll-behavior: smooth; }
 
-        body {
-            background-color: var(--soft-white);
-            color: var(--deep-black);
-            overflow-x: hidden;
-        }
+        body { background: #fdfdfd; color: var(--dark); overflow-x: hidden; }
 
-        /* --- Navigation --- */
+        /* --- Advanced Navigation --- */
         nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 5%;
-            background: white;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 8%; background: var(--glass); backdrop-filter: blur(10px);
+            position: fixed; width: 100%; top: 0; z-index: 2000; border-bottom: 1px solid rgba(0,0,0,0.1);
         }
 
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            letter-spacing: 2px;
+        .logo { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; letter-spacing: -1px; }
+
+        .cart-icon { position: relative; cursor: pointer; font-weight: bold; }
+        #cart-count { background: var(--gold); color: white; padding: 2px 6px; border-radius: 50%; font-size: 10px; position: absolute; top: -10px; right: -15px; }
+
+        /* --- Parallax Hero --- */
+        .hero {
+            height: 100vh; background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+            url('https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&w=1500&q=80');
+            background-size: cover; background-attachment: fixed;
+            display: flex; align-items: center; justify-content: center; color: white; text-align: center;
         }
 
-        .nav-links {
-            list-style: none;
-            display: flex;
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 5rem; line-height: 1; margin-bottom: 20px; animation: fadeInUp 1s ease; }
+
+        /* --- Advanced Product Grid --- */
+        .container { padding: 100px 8%; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
+
+        .product-card {
+            background: white; border-radius: 15px; overflow: hidden; position: relative;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
-        .nav-links li {
-            margin-left: 30px;
-        }
+        .product-card:hover { transform: translateY(-10px); }
 
-        .nav-links a {
-            text-decoration: none;
-            color: var(--deep-black);
-            font-weight: 600;
-            font-size: 0.9rem;
+        .product-img { width: 100%; height: 350px; object-fit: cover; }
+
+        .product-info { padding: 20px; text-align: center; }
+        .price { color: var(--gold); font-weight: 700; margin: 10px 0; font-size: 1.2rem; }
+
+        .add-btn {
+            width: 100%; padding: 12px; background: var(--dark); color: white;
+            border: none; border-radius: 8px; cursor: pointer; font-weight: 600;
             transition: 0.3s;
         }
 
-        .nav-links a:hover {
-            color: var(--primary-gold);
+        .add-btn:hover { background: var(--gold); }
+
+        /* --- Cart Sidebar --- */
+        #cart-sidebar {
+            position: fixed; right: -400px; top: 0; width: 350px; height: 100%;
+            background: white; z-index: 3000; box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+            padding: 40px 20px; transition: 0.5s;
         }
 
-        /* --- Hero Section --- */
-        .hero {
-            height: 80vh;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
-                        url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
+        #cart-sidebar.active { right: 0; }
+        .close-cart { cursor: pointer; font-size: 1.5rem; position: absolute; top: 20px; left: 20px; }
+
+        /* --- Animations --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .hero-content h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 4rem;
-            margin-bottom: 20px;
-        }
-
-        .btn {
-            padding: 12px 30px;
-            background: var(--primary-gold);
-            color: white;
-            text-decoration: none;
-            border-radius: 2px;
-            transition: 0.4s;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 1px;
-        }
-
-        .btn:hover {
-            background: var(--deep-black);
-        }
-
-        /* --- Categories Section --- */
-        .section-title {
-            text-align: center;
-            margin: 60px 0 40px;
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-        }
-
-        .categories {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            padding: 0 5%;
-        }
-
-        .cat-card {
-            position: relative;
-            height: 450px;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        .cat-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: 0.5s;
-        }
-
-        .cat-card:hover img {
-            transform: scale(1.1);
-        }
-
-        .cat-overlay {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            background: white;
-            padding: 15px 25px;
-        }
-
-        /* --- Payment Options Section --- */
-        .payments {
-            background: white;
-            padding: 40px 5%;
-            text-align: center;
-            margin-top: 60px;
-        }
-
-        .payment-icons {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-            margin-top: 20px;
-            font-size: 0.8rem;
-            color: #777;
-        }
-
-        /* --- Footer --- */
-        footer {
-            background: var(--deep-black);
-            color: white;
-            padding: 60px 5% 20px;
-            margin-top: 60px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-        }
-
-        .footer-col h4 {
-            margin-bottom: 20px;
-            color: var(--primary-gold);
-        }
-
-        .footer-col p, .footer-col li {
-            font-size: 0.85rem;
-            color: #bbb;
-            margin-bottom: 10px;
-            list-style: none;
+        /* Responsive Mobile */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            nav { padding: 15px 5%; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">LUXE & CO.</div>
-        <ul class="nav-links">
-            <li><a href="#">HOME</a></li>
-            <li><a href="#mens">MEN</a></li>
-            <li><a href="#womens">WOMEN</a></li>
-            <li><a href="#beauty">BEAUTY</a></li>
-            <li><a href="#sale" style="color: red;">SALE</a></li>
-        </ul>
+        <div class="logo">LUXE</div>
+        <div class="cart-icon" onclick="toggleCart()">BAG <span id="cart-count">0</span></div>
     </nav>
 
     <header class="hero">
-        <div class="hero-content">
-            <h1>Elevate Your Style</h1>
-            <p style="margin-bottom: 30px;">Premium collections for the modern individual.</p>
-            <a href="#womens" class="btn">Shop Collection</a>
+        <div>
+            <h1>The Summer<br><i>Collection</i></h1>
+            <p>Experience the intersection of tech and beauty.</p>
         </div>
     </header>
 
-    <h2 class="section-title">Shop by Category</h2>
-    
-    <section class="categories">
-        <div class="cat-card" id="mens">
-            <img src="https://images.unsplash.com/photo-1488161628813-244a2ca1474b?auto=format&fit=crop&w=700&q=80" alt="Men's Fashion">
-            <div class="cat-overlay">
-                <h3>MEN'S FASHION</h3>
-                <p>Tailored Classics</p>
+    <div class="container">
+        <h2 style="font-family: 'Playfair Display'; font-size: 2.5rem; margin-bottom: 50px;">Featured Arrivals</h2>
+        <div class="grid">
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1524041255072-7df05355a39c?auto=format&fit=crop&w=500&q=80" class="product-img">
+                <div class="product-info">
+                    <h3>Silk Evening Gown</h3>
+                    <p class="price">$249.00</p>
+                    <button class="add-btn" onclick="addToCart('Silk Gown', 249)">Add to Bag</button>
+                </div>
             </div>
-        </div>
 
-        <div class="cat-card" id="womens">
-            <img src="https://images.unsplash.com/photo-1539109132314-3477524c8d95?auto=format&fit=crop&w=700&q=80" alt="Women's Fashion">
-            <div class="cat-overlay">
-                <h3>WOMEN'S FASHION</h3>
-                <p>Elegant Essentials</p>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1596462502278-27bf8d53e16f?auto=format&fit=crop&w=500&q=80" class="product-img">
+                <div class="product-info">
+                    <h3>Radiance Serum</h3>
+                    <p class="price">$85.00</p>
+                    <button class="add-btn" onclick="addToCart('Radiance Serum', 85)">Add to Bag</button>
+                </div>
             </div>
-        </div>
 
-        <div class="cat-card" id="beauty">
-            <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=700&q=80" alt="Beauty Products">
-            <div class="cat-overlay">
-                <h3>BEAUTY & SKIN</h3>
-                <p>Natural Radiance</p>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=500&q=80" class="product-img">
+                <div class="product-info">
+                    <h3>Minimalist Blazer</h3>
+                    <p class="price">$195.00</p>
+                    <button class="add-btn" onclick="addToCart('Minimalist Blazer', 195)">Add to Bag</button>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <section class="payments">
-        <h3>Secure Checkout</h3>
-        <p>We accept all major payment providers</p>
-        <div class="payment-icons">
-            <span>VISA</span> | <span>MASTERCARD</span> | <span>PAYPAL</span> | <span>APPLE PAY</span> | <span>STRIPE</span>
-        </div>
-    </section>
+    <div id="cart-sidebar">
+        <span class="close-cart" onclick="toggleCart()">&times;</span>
+        <h2 style="margin-bottom: 20px;">Your Bag</h2>
+        <div id="cart-items"></div>
+        <hr style="margin: 20px 0;">
+        <h3>Total: $<span id="cart-total">0</span></h3>
+        <button class="add-btn" style="margin-top: 20px;">Checkout with PayPal</button>
+    </div>
 
-    <footer>
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h4>LUXE & CO.</h4>
-                <p>Defining the future of fashion and beauty with quality and sustainability at our core.</p>
-            </div>
-            <div class="footer-col">
-                <h4>QUICK LINKS</h4>
-                <li>Track Order</li>
-                <li>Returns Policy</li>
-                <li>Size Guide</li>
-                <li>Contact Us</li>
-            </div>
-            <div class="footer-col">
-                <h4>NEWSLETTER</h4>
-                <p>Join for 10% off your first order.</p>
-                <input type="email" placeholder="Enter your email" style="padding: 8px; width: 100%;">
-            </div>
-        </div>
-        <p style="text-align: center; margin-top: 40px; font-size: 0.7rem; color: #555;">&copy; 2026 Luxe & Co. All Rights Reserved.</p>
-    </footer>
+    <script>
+        let cart = [];
+        let total = 0;
+
+        function toggleCart() {
+            document.getElementById('cart-sidebar').classList.toggle('active');
+        }
+
+        function addToCart(name, price) {
+            cart.push({name, price});
+            total += price;
+            updateUI();
+            
+            // Subtle animation for feedback
+            const count = document.getElementById('cart-count');
+            count.style.transform = "scale(1.5)";
+            setTimeout(() => count.style.transform = "scale(1)", 200);
+        }
+
+        function updateUI() {
+            document.getElementById('cart-count').innerText = cart.length;
+            document.getElementById('cart-total').innerText = total.toFixed(2);
+            
+            const list = document.getElementById('cart-items');
+            list.innerHTML = cart.map(item => `
+                <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
+                    <span>${item.name}</span>
+                    <span>$${item.price}</span>
+                </div>
+            `).join('');
+        }
+    </script>
 
 </body>
 </html>
-
