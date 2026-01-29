@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxe & Co. | Fashion & Beauty</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gold: #c5a059;
+            --deep-black: #1a1a1a;
+            --soft-white: #f9f9f9;
+            --accent-pink: #f4d0cf;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--soft-white);
+            color: var(--deep-black);
+            overflow-x: hidden;
+        }
+
+        /* --- Navigation --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--deep-black);
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-gold);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 80vh;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+                        url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            background: var(--primary-gold);
+            color: white;
+            text-decoration: none;
+            border-radius: 2px;
+            transition: 0.4s;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background: var(--deep-black);
+        }
+
+        /* --- Categories Section --- */
+        .section-title {
+            text-align: center;
+            margin: 60px 0 40px;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+        }
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 0 5%;
+        }
+
+        .cat-card {
+            position: relative;
+            height: 450px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .cat-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .cat-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .cat-overlay {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: white;
+            padding: 15px 25px;
+        }
+
+        /* --- Payment Options Section --- */
+        .payments {
+            background: white;
+            padding: 40px 5%;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .payment-icons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: #777;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: var(--deep-black);
+            color: white;
+            padding: 60px 5% 20px;
+            margin-top: 60px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-col h4 {
+            margin-bottom: 20px;
+            color: var(--primary-gold);
+        }
+
+        .footer-col p, .footer-col li {
+            font-size: 0.85rem;
+            color: #bbb;
+            margin-bottom: 10px;
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">LUXE & CO.</div>
+        <ul class="nav-links">
+            <li><a href="#">HOME</a></li>
+            <li><a href="#mens">MEN</a></li>
+            <li><a href="#womens">WOMEN</a></li>
+            <li><a href="#beauty">BEAUTY</a></li>
+            <li><a href="#sale" style="color: red;">SALE</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Elevate Your Style</h1>
+            <p style="margin-bottom: 30px;">Premium collections for the modern individual.</p>
+            <a href="#womens" class="btn">Shop Collection</a>
+        </div>
+    </header>
+
+    <h2 class="section-title">Shop by Category</h2>
+    
+    <section class="categories">
+        <div class="cat-card" id="mens">
+            <img src="https://images.unsplash.com/photo-1488161628813-244a2ca1474b?auto=format&fit=crop&w=700&q=80" alt="Men's Fashion">
+            <div class="cat-overlay">
+                <h3>MEN'S FASHION</h3>
+                <p>Tailored Classics</p>
+            </div>
+        </div>
+
+        <div class="cat-card" id="womens">
+            <img src="https://images.unsplash.com/photo-1539109132314-3477524c8d95?auto=format&fit=crop&w=700&q=80" alt="Women's Fashion">
+            <div class="cat-overlay">
+                <h3>WOMEN'S FASHION</h3>
+                <p>Elegant Essentials</p>
+            </div>
+        </div>
+
+        <div class="cat-card" id="beauty">
+            <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=700&q=80" alt="Beauty Products">
+            <div class="cat-overlay">
+                <h3>BEAUTY & SKIN</h3>
+                <p>Natural Radiance</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="payments">
+        <h3>Secure Checkout</h3>
+        <p>We accept all major payment providers</p>
+        <div class="payment-icons">
+            <span>VISA</span> | <span>MASTERCARD</span> | <span>PAYPAL</span> | <span>APPLE PAY</span> | <span>STRIPE</span>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>LUXE & CO.</h4>
+                <p>Defining the future of fashion and beauty with quality and sustainability at our core.</p>
+            </div>
+            <div class="footer-col">
+                <h4>QUICK LINKS</h4>
+                <li>Track Order</li>
+                <li>Returns Policy</li>
+                <li>Size Guide</li>
+                <li>Contact Us</li>
+            </div>
+            <div class="footer-col">
+                <h4>NEWSLETTER</h4>
+                <p>Join for 10% off your first order.</p>
+                <input type="email" placeholder="Enter your email" style="padding: 8px; width: 100%;">
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 40px; font-size: 0.7rem; color: #555;">&copy; 2026 Luxe & Co. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
